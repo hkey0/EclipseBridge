@@ -5,8 +5,8 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #a9e190;
-
     transform: scale(1.6);   
+    overflow: hidden;
 }
 
 .form-container {
