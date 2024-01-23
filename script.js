@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+
     var web3 = new Web3(Web3.givenProvider);
+
 
     async function testi() {
         connectBtn = document.getElementById("connect-button");
@@ -54,14 +56,14 @@ document.addEventListener('DOMContentLoaded', function () {
         ], "0x7C9e161ebe55000a3220F972058Fb83273653a6e")
 
 
-        let ecipseAddrParam = ethers.utils.hexlify(
-            ethers.utils.base58.decode(eclipseAddr) 
-        )
+        let ecipseAddrParam = ethers.utils.hexlify(ethers.utils.base58.decode(eclipseAddr))
 
-
-        contract.methods.deposit(ecipseAddrParam, String(amountinWei), 150 * (10**9)).send({ 
+        contract.methods.deposit(ecipseAddrParam, String(amountinWei), 200 * (10**9)).send({ 
                 from: (await web3.eth.getAccounts())[0], 
-                value: amountinWei + 150 * (10**9)
+                value: amountinWei + 200 * (10**9)
+            }).once("transactionHash", (hash) => {
+                window.open("https://sepolia.etherscan.io/tx/" + hash)
+                console.log("hash", hash)
             }).then(function (result) { console.log(result) })
     }
 
