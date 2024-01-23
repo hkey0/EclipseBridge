@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         connectBtn = document.getElementById("connect-button");
         walletArea = document.getElementById("sender-eth-addr")
 
+        // switch to sepolia
         await window.ethereum.request({
             method: 'wallet_switchEthereumChain',
               params: [{ chainId: web3.utils.toHex(11155111) }],
@@ -17,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
         connectBtn.innerText = 'Logout';
 
         walletArea.value = (await web3.eth.getAccounts())[0]
-
     }
 
     testi();
@@ -70,6 +70,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('bridge-button').addEventListener('click', async function () {
         deposit();
+    });
+
+    window.ethereum.on('accountsChanged', async () => {
+        this.location.reload()
     });
 
 })
