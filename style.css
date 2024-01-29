@@ -9,6 +9,13 @@ body {
     overflow: hidden;
 }
 
+.dev-credit {
+  margin: 0px;
+  margin-top: 10px;
+  color: black;
+
+}
+
 .form-container {
     width: 500px;
     background-color: white;
