@@ -5,7 +5,7 @@ An interface for the official Eclipse - Sepolia bridge. It has been coded to fac
 ## How to use?
 
 - Go to the [project page](https://hkey0.github.io/EclipseBridge/) served by Github pages.
-- Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' } Connect with your Metamask wallet.
+- Connect with your Metamask wallet.
 - Enter the amount you want to transfer in Ether and your eclipse wallet address. You can see the wallet address using the `solana address` command.
 - Click on the "BRIDGE" button and confirm the transaction. The etherscan page will open in a new tab to follow the transaction.
 
