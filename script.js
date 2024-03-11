@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     testi();
     async function deposit() {
-        /*
+        
         let chain = await window.ethereum.chainId
         if (chain != 0xaa36a7) {
          await window.ethereum.request({
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
               params: [{ chainId: web3.utils.toHex(11155111) }],
             });
         }
-        */
+        
         eclipseAddr = document.getElementById("eclipse-wallet").value;
         amountinWei = document.getElementById('ether-amount').value * (10**18)
 
