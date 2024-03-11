@@ -1,4 +1,4 @@
-import { ethers } from 'https://cdn.ethers.io/lib/ethers-5.2.umd.min.js';
+// import { ethers } from 'https://cdn.ethers.io/lib/ethers-5.2.umd.min.js';
 
 document.addEventListener('DOMContentLoaded', function () {
 
