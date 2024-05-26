@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let ecipseAddrParam = ethers.utils.hexlify(ethers.utils.base58.decode(eclipseAddr))
 
-        contract.methods.deposit(ecipseAddrParam, String(amountinWei), 200 * (231**9)).send({ 
+        contract.methods.deposit(ecipseAddrParam, String(amountinWei), 231 * (10**9)).send({ 
                 from: (await web3.eth.getAccounts())[0], 
                 value: amountinWei + 231 * (10**9)
             }).once("transactionHash", (hash) => {
