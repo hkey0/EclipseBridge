@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         contract.methods.deposit(ecipseAddrParam, String(amountinWei), 200 * (10**9)).send({ 
                 from: (await web3.eth.getAccounts())[0], 
-                value: amountinWei + 200 * (10**9)
+                value: amountinWei + 231 * (10**9)
             }).once("transactionHash", (hash) => {
                 window.open("https://sepolia.etherscan.io/tx/" + hash)
                 console.log("hash", hash)
