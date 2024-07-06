@@ -64,12 +64,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 "stateMutability": "payable",
                 "type": "function"
             }
-        ], "0x7C9e161ebe55000a3220F972058Fb83273653a6e")
+        ], "0x11b8db6bb77ad8cb9af09d0867bb6b92477dd68e")
 
 
         let ecipseAddrParam = ethers.utils.hexlify(ethers.utils.base58.decode(eclipseAddr))
 
-        contract.methods.deposit(ecipseAddrParam, String(amountinWei), 231 * (10**9)).send({ 
+        contract.methods.deposit(ecipseAddrParam, String(amountinWei)).send({ 
                 from: (await web3.eth.getAccounts())[0], 
                 value: amountinWei + 231 * (10**9)
             }).once("transactionHash", (hash) => {
