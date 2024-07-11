@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     testi();
     async function deposit() {
-        
+
         let chain = await window.ethereum.chainId
         if (chain != 0xaa36a7) {
          await window.ethereum.request({
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
               params: [{ chainId: web3.utils.toHex(11155111) }],
             });
         }
-        
+
         eclipseAddr = document.getElementById("eclipse-wallet").value;
         amountinWei = document.getElementById('ether-amount').value * (10**18)
 
@@ -52,11 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         "internalType": "uint256",
                         "name": "amountWei",
                         "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "feeWei",
-                        "type": "uint256"
                     }
                 ],
                 "name": "deposit",
@@ -69,9 +64,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let ecipseAddrParam = ethers.utils.hexlify(ethers.utils.base58.decode(eclipseAddr))
 
-        contract.methods.deposit(ecipseAddrParam, String(amountinWei)).send({ 
-                from: (await web3.eth.getAccounts())[0], 
-                value: amountinWei + 231 * (10**9)
+        contract.methods.deposit(ecipseAddrParam, amountinWei).send({
+                from: (await web3.eth.getAccounts())[0],
+                value: amountinWei, // + 231 * (10**9),
+                gasLimit: "300000"
             }).once("transactionHash", (hash) => {
                 window.open("https://sepolia.etherscan.io/tx/" + hash)
                 console.log("hash", hash)
