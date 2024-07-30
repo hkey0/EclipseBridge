@@ -1,6 +1,6 @@
-# UI FOR ECLIPSE - SEPOLIA BRIDGE
+# UI FOR ECLIPSE - ETHEREUM MAINNET BRIDGE
 
-An interface for the official Eclipse - Sepolia bridge. It has been coded to facilitate users and developers in using the Eclipse testnet bridge.
+An interface for the official Eclipse - Ethereum MAINNET bridge. It has been coded to facilitate users and developers in using the Eclipse MAINNET bridge.
 
 ## How to use?
 
