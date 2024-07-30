@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Eclipse Bridge Sepolia</title>
+    <title>Eclipse Mainnet Bridge</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/web3@1.3.0/dist/web3.min.js"></script>
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
@@ -12,17 +12,23 @@
 </head>
 <body>
     <div class="form-container">
-        <h1>SEPOLIA-ECLIPSE BRIDGE</h1>
+        <h1>UNOFFICIAL ETHEREUM MAINNET - ECLIPSE BRIDGE by hkey</h1>
         <form>
           <div>
                 <input style="width: 300px;" type="text" id="sender-eth-addr" placeholder="Metamask not connected." disabled>
                 <button style="float: right;" id="connect-button">CONNECT</button>
             </div>
 
-            <input type="number" id="ether-amount" step="0.1" value="0.0015" placeholder="Amount in ether">
+            <input type="number" id="ether-amount" step="0.1" value="0.002" placeholder="Amount in ether">
             <input type="text" id="eclipse-wallet" placeholder="Your eclipse wallet address.">
-            <p>Make sure you select the correct chain before sending the transaction (Sepolia Testnet).</p>
-            <button type="button" id="bridge-button" >BRIDGE</button>
+	    <input disabled value="Your will see your Eclipse balance here." id="balance">
+	    <p>
+		<li>Make sure you select the correct chain before sending the transaction (Ethereum Mainnet).</li>
+		<li>Eclipse is currently in the Developer Mainnet phase, during this phase you will not be able to withdraw your ethers.</li>
+	    </p>
+            
+	    <button disabled type="button" id="bridge-button" >BRIDGE</button>
+
             <h6 class="dev-credit">TWITTER: <a href="https://x.com/hkeydesign">hkeydesign</a></h6>
             <h6 class="dev-credit">Github Repo: <a href="https://github.com/hkey0/EclipseBridge">hkey0/EclipseBridge</a></h6>
         </form>

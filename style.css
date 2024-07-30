@@ -56,14 +56,21 @@ button {
     padding: 10px;
     border: none;
     border-radius: 4px;
-    background-color: #0000007a;
+    background-color: #0c0d0d;
     color: white;
     cursor: pointer;
 }
 
 button:hover {
     transition: 0.3s;
-    background-color: #00000043;
+    background-color: #252627;
+}
+
+button:disabled {
+    background-color: #5c5c5c;
+    color: black;
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
 h1 {
