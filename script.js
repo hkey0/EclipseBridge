@@ -68,7 +68,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         eclipseAddr = document.getElementById("eclipse-wallet").value;
-        amountinWei = document.getElementById('ether-amount').value * (10**18)
+        // amountinWei = document.getElementById('ether-amount').value * (10**18)
+        amountinWei = ethers.utils.parseEther(document.getElementById('ether-amount').value) 
+	
 
 
         console.log("Eclipse addr: ", eclipseAddr, amountinWei)
@@ -98,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
         contract.methods.deposit(ecipseAddrParam, amountinWei).send({
                 from: (await web3.eth.getAccounts())[0],
                 value: amountinWei,
-                // gasLimit: "300031"
             }).once("transactionHash", (hash) => {
                 window.open("https://etherscan.io/tx/" + hash)
                 console.log("hash", hash)
