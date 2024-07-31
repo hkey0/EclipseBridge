@@ -6,7 +6,7 @@ An interface for the official Eclipse - Ethereum MAINNET bridge. It has been cod
 
 - Go to the [project page](https://hkey0.github.io/EclipseBridge/) served by Github pages.
 - Connect with your Metamask wallet.
-- Enter the amount you want to transfer in Ether and your eclipse wallet address. You can see the wallet address using the `solana address` command.
+- Enter the amount you want to transfer in ether and your Eclipse wallet address.
 - Click on the "BRIDGE" button and confirm the transaction. The etherscan page will open in a new tab to follow the transaction.
 
 
@@ -18,4 +18,4 @@ But metamask will not allow you to link to the index.html files. To connect with
 
 ## Preview
 
-![preview image](https://i.ibb.co/HCDQR3j/image.png)
+![preview image](https://i.ibb.co/mFFbK96/resim.png)
