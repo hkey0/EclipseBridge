@@ -1,1 +1,33 @@
-<h1>hello<h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eclipse Bridge Sepolia</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.0/dist/web3.min.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+        type="application/javascript"></script>
+    <script src="script.js"></script>
+
+</head>
+<body>
+    <div class="form-container">
+        <h1>SEPOLIA-ECLIPSE BRIDGE</h1>
+        <form>
+          <div>
+                <input style="width: 300px;" type="text" id="sender-eth-addr" placeholder="Metamask not connected." disabled>
+                <button style="float: right;" id="connect-button">CONNECT</button>
+            </div>
+
+            <input type="number" id="ether-amount" step="0.1" value="0.0015" placeholder="Amount in ether">
+            <input type="text" id="eclipse-wallet" placeholder="Your eclipse wallet address.">
+            <p>Make sure you select the correct chain before sending the transaction (Sepolia Testnet).</p>
+            <button type="button" id="bridge-button" >BRIDGE</button>
+            <h6 class="dev-credit">TWITTER: <a href="https://x.com/hkeydesign">hkeydesign</a></h6>
+            <h6 class="dev-credit">Github Repo: <a href="https://github.com/hkey0/EclipseBridge">hkey0/EclipseBridge</a></h6>
+        </form>
+        
+    </div>
+</body>
+</html>
+
