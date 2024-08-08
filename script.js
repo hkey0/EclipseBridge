@@ -68,10 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         eclipseAddr = document.getElementById("eclipse-wallet").value;
-        // amountinWei = document.getElementById('ether-amount').value * (10**18)
-        amountinWei = ethers.utils.parseEther(document.getElementById('ether-amount').value) 
-	
-
+        amountinWei = ethers.utils.parseEther(document.getElementById('ether-amount').value)
 
         console.log("Eclipse addr: ", eclipseAddr, amountinWei)
         var contract = new web3.eth.Contract([
