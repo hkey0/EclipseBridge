@@ -1,6 +1,10 @@
 // import { ethers } from 'https://cdn.ethers.io/lib/ethers-5.2.umd.min.js';
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (window.self === window.top) {
+    document.body.style.transform = "scale(1.6)";
+  }
+
   var web3 = new Web3(Web3.givenProvider);
 
   async function testi() {
@@ -68,8 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .deposit(ecipseAddrParam, amountinWei)
       .send({
         from: (await web3.eth.getAccounts())[0],
-        value: amountinWei, // + 231 * (10**9),
-        gasLimit: "300031",
+        value: amountinWei, 
       })
       .once("transactionHash", (hash) => {
         window.open("https://sepolia.etherscan.io/tx/" + hash);
