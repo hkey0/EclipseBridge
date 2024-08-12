@@ -1,86 +1,92 @@
 // import { ethers } from 'https://cdn.ethers.io/lib/ethers-5.2.umd.min.js';
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
+  var web3 = new Web3(Web3.givenProvider);
 
-    var web3 = new Web3(Web3.givenProvider);
+  async function testi() {
+    connectBtn = document.getElementById("connect-button");
+    walletArea = document.getElementById("sender-eth-addr");
 
+    // switch to sepolia
+    await window.ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: web3.utils.toHex(11155111) }],
+    });
 
-    async function testi() {
-        connectBtn = document.getElementById("connect-button");
-        walletArea = document.getElementById("sender-eth-addr")
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    web3 = new Web3(window.ethereum);
+    connectBtn.innerText = "Logout";
 
-        // switch to sepolia
-        await window.ethereum.request({
-            method: 'wallet_switchEthereumChain',
-              params: [{ chainId: web3.utils.toHex(11155111) }],
-            });
+    walletArea.value = (await web3.eth.getAccounts())[0];
+  }
 
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
-        web3 = new Web3(window.ethereum);
-        connectBtn.innerText = 'Logout';
-
-        walletArea.value = (await web3.eth.getAccounts())[0]
+  testi();
+  async function deposit() {
+    let chain = await window.ethereum.chainId;
+    if (chain != 0xaa36a7) {
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: web3.utils.toHex(11155111) }],
+      });
     }
 
-    testi();
-    async function deposit() {
+    eclipseAddr = document.getElementById("eclipse-wallet").value;
+    amountinWei = ethers.utils.parseEther(
+      document.getElementById("ether-amount").value,
+    );
+    console.log("Eclipse addr: ", eclipseAddr, amountinWei);
 
-        let chain = await window.ethereum.chainId
-        if (chain != 0xaa36a7) {
-         await window.ethereum.request({
-            method: 'wallet_switchEthereumChain',
-              params: [{ chainId: web3.utils.toHex(11155111) }],
-            });
-        }
-
-        eclipseAddr = document.getElementById("eclipse-wallet").value;
-        amountinWei = document.getElementById('ether-amount').value * (10**18)
-
-
-        console.log("Eclipse addr: ", eclipseAddr, amountinWei)
-
-
-        var contract = new web3.eth.Contract([
+    var contract = new web3.eth.Contract(
+      [
+        {
+          inputs: [
             {
-                "inputs": [
-                    {
-                        "internalType": "bytes32",
-                        "name": "hexSolanaAddress",
-                        "type": "bytes32"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "amountWei",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "deposit",
-                "outputs": [],
-                "stateMutability": "payable",
-                "type": "function"
-            }
-        ], "0x11b8db6bb77ad8cb9af09d0867bb6b92477dd68e")
+              internalType: "bytes32",
+              name: "hexSolanaAddress",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint256",
+              name: "amountWei",
+              type: "uint256",
+            },
+          ],
+          name: "deposit",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+      ],
+      "0x11b8db6bb77ad8cb9af09d0867bb6b92477dd68e",
+    );
 
+    let ecipseAddrParam = ethers.utils.hexlify(
+      ethers.utils.base58.decode(eclipseAddr),
+    );
 
-        let ecipseAddrParam = ethers.utils.hexlify(ethers.utils.base58.decode(eclipseAddr))
+    contract.methods
+      .deposit(ecipseAddrParam, amountinWei)
+      .send({
+        from: (await web3.eth.getAccounts())[0],
+        value: amountinWei, // + 231 * (10**9),
+        gasLimit: "300031",
+      })
+      .once("transactionHash", (hash) => {
+        window.open("https://sepolia.etherscan.io/tx/" + hash);
+        console.log("hash", hash);
+      })
+      .then(function (result) {
+        console.log(result);
+      });
+  }
 
-        contract.methods.deposit(ecipseAddrParam, amountinWei).send({
-                from: (await web3.eth.getAccounts())[0],
-                value: amountinWei, // + 231 * (10**9),
-                gasLimit: "300031"
-            }).once("transactionHash", (hash) => {
-                window.open("https://sepolia.etherscan.io/tx/" + hash)
-                console.log("hash", hash)
-            }).then(function (result) { console.log(result) })
-    }
-
-
-    document.getElementById('bridge-button').addEventListener('click', async function () {
-        deposit();
+  document
+    .getElementById("bridge-button")
+    .addEventListener("click", async function () {
+      deposit();
     });
 
-    window.ethereum.on('accountsChanged', async () => {
-        this.location.reload()
-    });
-
-})
+  window.ethereum.on("accountsChanged", async () => {
+    this.location.reload();
+  });
+});
