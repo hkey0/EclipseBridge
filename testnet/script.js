@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
           type: "function",
         },
       ],
-      "0x11b8db6bb77ad8cb9af09d0867bb6b92477dd68e",
+      "0xe49aaa25a10fd6e15dd7ddcb50904ca1e91f6e01",
     );
 
     let ecipseAddrParam = ethers.utils.hexlify(
